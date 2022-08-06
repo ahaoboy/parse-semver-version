@@ -1,4 +1,4 @@
-const reg =
+export const SemverRegex =
   /^[v|V]??(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$/;
 
 export type Version = [
@@ -11,8 +11,8 @@ export type Version = [
 ];
 
 export default (version: string): Version => {
-  const matches = version.match(reg) || [];
+  const matches = version.match(SemverRegex) || [];
   const [_, major, minor, patch, preRelease] = matches;
-  const [tag, preReleaseVersion] = preRelease?.split(".") || [];
+  const [tag, preReleaseVersion] = preRelease?.split('.') || [];
   return [major, minor, patch, tag, preReleaseVersion, preRelease];
 };
